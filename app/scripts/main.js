@@ -11,7 +11,7 @@ var categories = [
     {id: 6, name: 'News', value: 0, color: '#5d9cec'},
     {id: 7, name: 'Entertainment', value: 0, color: '#48cfad'},
     {id: 8, name: 'Home', value: 0, color: '#fc6e51'},
-    {id: 9, name: 'Travel', value: 0, color: '#ffce54'},
+    {id: 9, name: 'Travel', value: 0, color: '#ffce54'}
 ];
 
 var links = [
@@ -63,8 +63,12 @@ var EqualizerView = Backbone.View.extend({
 
         this.addVerticalLines();
 
-        var bbox = $('.label').eq(0).get(0).getBBox();
-        this.offsetTop += bbox.height;
+        try {
+            var bbox = $('.label').eq(0).get(0).getBBox();
+            this.offsetTop += bbox.height;
+        } catch(e) {
+            this.offsetTop += 25;
+        }
 
         this.setDragFunctions();
 
@@ -78,9 +82,9 @@ var EqualizerView = Backbone.View.extend({
             //Label
             this.svg.append('text')
                 .attr({
-                    class: 'label',
-                    x: cx,
-                    y: 20,
+                    'class': 'label',
+                    'x': cx,
+                    'y': 20,
                     'text-anchor': 'middle'
                 })
                 .text(cat.name);
@@ -88,11 +92,11 @@ var EqualizerView = Backbone.View.extend({
             //Vertical line
             this.svg.append('line')
                 .attr({
-                    class: 'yaxis',
-                    x1: cx,
-                    y1: this.topRange,
-                    x2: cx,
-                    y2: this.bottomRange
+                    'class': 'yaxis',
+                    'x1': cx,
+                    'y1': this.topRange,
+                    'x2': cx,
+                    'y2': this.bottomRange
                 });
 
             //Line ticks
@@ -100,11 +104,11 @@ var EqualizerView = Backbone.View.extend({
             for(var i = 1; i <= this.nTicks; i++) {
                 this.svg.append('line')
                     .attr({
-                        class: 'yaxis',
-                        x1: cx - (this.tickWidth / 2),
-                        y1: this.topRange + (tickInc * i),
-                        x2: cx + (this.tickWidth / 2),
-                        y2: this.topRange + (tickInc * i)
+                        'class': 'yaxis',
+                        'x1': cx - (this.tickWidth / 2),
+                        'y1': this.topRange + (tickInc * i),
+                        'x2': cx + (this.tickWidth / 2),
+                        'y2': this.topRange + (tickInc * i)
                     });
             }
 
@@ -131,7 +135,7 @@ var EqualizerView = Backbone.View.extend({
                 .attr('cy', d.y = Math.max(self.topRange, Math.min(self.bottomRange, d3.event.y)));
 
             self.categories[(d.id-1)].value = self.reverseCY(d.y);
-            //console.log(categories[(d.id-1)].value);
+
             self.update();
         };
 

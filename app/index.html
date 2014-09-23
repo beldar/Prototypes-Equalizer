@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js">
     <head>
         <meta charset="utf-8">
         <title>saga</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
@@ -22,9 +23,6 @@
 
     </head>
     <body>
-        <!--[if lt IE 10]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 
         <div class="container">
             <div class="col-md-12 text-center">
@@ -35,7 +33,11 @@
             </div>
         </div>
 
+        <!--[if lt IE 9]>
+        <script src="scripts/ie8vendor.js"></script>
+        <![endif]-->
 
+        <!--[if gt IE 8]>
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -44,6 +46,7 @@
         <script src="bower_components/backbone/backbone.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+        <![endif]-->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
 <script>
@@ -54,21 +57,6 @@ e.src='//www.google-analytics.com/analytics.js';
 r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-XXXXX-X');ga('send','pageview');
 </script>-->
-
-        <!-- build:js(.) scripts/plugins.js -->
-        <script src="bower_components/bootstrap/js/affix.js"></script>
-        <script src="bower_components/bootstrap/js/alert.js"></script>
-        <script src="bower_components/bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/bootstrap/js/modal.js"></script>
-        <script src="bower_components/bootstrap/js/transition.js"></script>
-        <script src="bower_components/bootstrap/js/button.js"></script>
-        <script src="bower_components/bootstrap/js/popover.js"></script>
-        <script src="bower_components/bootstrap/js/carousel.js"></script>
-        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/bootstrap/js/collapse.js"></script>
-        <script src="bower_components/bootstrap/js/tab.js"></script>
-        <!-- endbuild -->
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>

@@ -6,7 +6,8 @@
     "modernizr": "~2.8.2",
     "jquery": "~1.11.1",
     "d3": "~3.4.11",
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "r2d3": "~0.2.0"
   },
   "devDependencies": {}
 }
