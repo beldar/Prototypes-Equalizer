@@ -5,9 +5,13 @@ body {
 }
 
 #equalizer {
+    width: 800px;
+    margin: 0 auto;
+
     .circle {
         stroke: #f4f4f4;
         stroke-width: 10px;
+        cursor: ns-resize;
     }
     .circle-shadow {
         stroke: #6999b8;
@@ -21,5 +25,23 @@ body {
     .link-shadow {
         stroke: #6999b8;
         stroke-width: 4px;
+    }
+    .label {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        fill: #ffffff;
+        text-shadow: 2px 3px 2px #6999b8;
+    }
+    .yaxis {
+        stroke: #569dcd;
+        stroke-width: 2px;
+    }
+    .value, .percent {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 11px;
+        fill: #ffffff;
+        text-shadow: 2px 3px 2px #6999b8;
     }
 }
