@@ -51,6 +51,7 @@ var EqualizerView = Backbone.View.extend({
         this.showValues = true;
         this.showPercent = true;
         this.precision = 2;
+        this.maxscale = 100;
 
         this.svg = d3.select('#equalizer')
             .append('svg:svg')
@@ -58,7 +59,7 @@ var EqualizerView = Backbone.View.extend({
             .attr('height', this.height);
 
         this.scale = d3.scale.linear()
-            .domain([-100, 100])
+            .domain([-this.maxscale, this.maxscale])
             .range([this.bottomRange, this.topRange]);
 
         this.addVerticalLines();
@@ -149,6 +150,13 @@ var EqualizerView = Backbone.View.extend({
                 if ( cat.id !== d.id ) {
                     cat.value -= diff;
                     cat.value = self.round(cat.value);
+                    var absval = Math.abs(cat.value);
+                    if (absval > self.maxscale) {
+                        self.scale = d3.scale.linear()
+                            .domain([-absval, absval])
+                            .range([self.bottomRange, self.topRange]);
+                        self.maxscale = absval;
+                    }
                 }
             });
             total = _.reduce(self.categories, function(memo, cat){ return parseFloat(memo + cat.value); }, 0);
