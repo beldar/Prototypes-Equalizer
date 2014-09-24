@@ -5,8 +5,14 @@ body {
   font-weight: 300;
 }
 #equalizer {
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
+}
+#equalizer svg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
 }
 #equalizer .circle {
   stroke: #f4f4f4;

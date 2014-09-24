@@ -56,7 +56,9 @@ var EqualizerView = Backbone.View.extend({
         this.svg = d3.select('#equalizer')
             .append('svg:svg')
             .attr('width', this.width)
-            .attr('height', this.height);
+            .attr('height', this.height)
+            .attr('viewBox', '0 0 '+this.width+' '+this.height)
+            .attr('preserveAspectRatio', 'xMinYMin meet');
 
         this.scale = d3.scale.linear()
             .domain([-this.maxscale, this.maxscale])
@@ -78,7 +80,6 @@ var EqualizerView = Backbone.View.extend({
     },
 
     addLabels: function() {
-        //Add vertical line axis for each category
         _.each(this.categories, function(cat) {
             var cx = this.getCX(cat);
             //Label
@@ -143,10 +144,8 @@ var EqualizerView = Backbone.View.extend({
 
         this.equalize = function(d) {
             var total = _.reduce(self.categories, function(memo, cat){ return parseFloat(memo + cat.value); }, 0);
-            //var subtotal = total - d.value;
             var diff = self.round(total / 8);
-            console.log('Total: '+total);
-            console.log('Diff: '+diff);
+
             _.each(self.categories, function(cat){
                 if ( cat.id !== d.id ) {
                     cat.value -= diff;
@@ -160,8 +159,7 @@ var EqualizerView = Backbone.View.extend({
                     }
                 }
             });
-            total = _.reduce(self.categories, function(memo, cat){ return parseFloat(memo + cat.value); }, 0);
-            console.log('New total: '+total);
+
             self.update(true);
         };
 
