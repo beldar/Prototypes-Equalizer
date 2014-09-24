@@ -32,9 +32,18 @@ body {
   fill: #ffffff;
   text-shadow: 2px 3px 2px #6999b8;
 }
-#equalizer .yaxis {
+#equalizer .yaxis path,
+#equalizer .yaxis line {
+  fill: none;
   stroke: #569dcd;
   stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+#equalizer .yaxis .tick line {
+  transform: translate(-6, 0);
+}
+#equalizer .yaxis .tick text {
+  display: none;
 }
 #equalizer .value,
 #equalizer .percent {

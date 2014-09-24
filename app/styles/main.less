@@ -34,8 +34,21 @@ body {
         text-shadow: 2px 3px 2px #6999b8;
     }
     .yaxis {
-        stroke: #569dcd;
-        stroke-width: 2px;
+        path, line {
+            fill: none;
+            stroke: #569dcd;
+            stroke-width: 2px;
+            shape-rendering: crispEdges;
+        }
+
+        .tick {
+            line {
+                transform: translate(-6,0);
+            }
+            text {
+                display: none;
+            }
+        }
     }
     .value, .percent {
         font-family: 'Roboto', sans-serif;

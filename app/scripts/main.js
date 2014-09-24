@@ -62,7 +62,7 @@ var EqualizerView = Backbone.View.extend({
             .domain([-this.maxscale, this.maxscale])
             .range([this.bottomRange, this.topRange]);
 
-        this.addVerticalLines();
+        //this.addVerticalLines();
 
         try {
             var bbox = $('.label').eq(0).get(0).getBBox();
@@ -72,11 +72,12 @@ var EqualizerView = Backbone.View.extend({
         }
 
         this.setDragFunctions();
+        this.addLabels();
 
         this.update();
     },
 
-    addVerticalLines: function() {
+    addLabels: function() {
         //Add vertical line axis for each category
         _.each(this.categories, function(cat) {
             var cx = this.getCX(cat);
@@ -90,7 +91,7 @@ var EqualizerView = Backbone.View.extend({
                 })
                 .text(cat.name);
 
-            //Vertical line
+            /*//Vertical line
             this.svg.append('line')
                 .attr({
                     'class': 'yaxis',
@@ -111,7 +112,7 @@ var EqualizerView = Backbone.View.extend({
                         'x2': cx + (this.tickWidth / 2),
                         'y2': this.topRange + (tickInc * i)
                     });
-            }
+            }*/
 
         }, this);
     },
@@ -181,6 +182,36 @@ var EqualizerView = Backbone.View.extend({
         animate = animate || false;
 
         var self = this;
+
+        //------------- Axis -------------//
+        var yaxis = d3.svg.axis()
+                        .scale(this.scale)
+                        .orient('left')
+                        .ticks((this.maxscale/50)+2)
+                        .tickSize(this.tickWidth,0);
+
+        var axis = this.svg.selectAll('.yaxis')
+            .data(this.categories);
+
+        //** Enter **//
+        axis
+            .enter()
+            .append('g')
+                .attr('class', 'yaxis')
+                .attr('transform', function(d) { return 'translate('+self.getCX(d)+', 0)'; });
+
+
+        //** Enter + Update **//
+        axis
+            .call(yaxis);
+
+        //Moving ticks a bit to the right so they are in the middle of the line
+        axis
+            .selectAll('.tick line')
+                .attr('transform', 'translate('+(this.tickWidth/2)+',0)');
+
+        //** Exit **//
+        axis.exit().remove();
 
         //------------- Links -------------//
         var lines = this.svg.selectAll('.link')
@@ -341,6 +372,8 @@ var EqualizerView = Backbone.View.extend({
         _.each(this.categories, function(cat) {
             cat.value = 0;
         });
+
+        this.maxscale = 100;
 
         this.update(true);
     }
