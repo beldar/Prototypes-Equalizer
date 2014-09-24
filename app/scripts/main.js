@@ -34,6 +34,7 @@ var EqualizerView = Backbone.View.extend({
     },
 
     initialize: function() {
+        var self = this;
         this.categories = categories;
         this.links = links;
         this.width = 800;
@@ -77,6 +78,23 @@ var EqualizerView = Backbone.View.extend({
         this.addLabels();
 
         this.update();
+
+        window.addEventListener('orientationchange', function() {
+            if (window.orientation === 90 || window.orientation === -90) {
+                self.$el.find('svg').css('min-width', '0');
+            } else {
+                self.$el.find('svg').css('min-width', '560px');
+            }
+        }, false);
+
+        $(window).resize(this.resize);
+        this.resize();
+    },
+
+    resize: function() {
+        if (window.innerWidth <= 480) {
+            $('#equalizer svg').css('min-width', '560px');
+        }
     },
 
     addLabels: function() {
