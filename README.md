@@ -4,6 +4,8 @@ This is a prototype for a self balancing equaliser (always tries to make all val
 
 It's build using the [d3.js library](http://d3js.org/), so it's SVG driven.
 
+![Preview](https://raw.githubusercontent.com/beldar/Prototypes-Equalizer/master/equaliser.gif)
+
 ## Install
 
 Run:
