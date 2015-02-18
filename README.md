@@ -8,19 +8,34 @@ It's build using the [d3.js library](http://d3js.org/), so it's SVG driven.
 
 ## Install
 
-Run:
+Dependencies
+------------
+
+You have to have installed [bower](http://bower.io/), and [compass](http://compass-style.org/install/). To install the first two you'll need [node](http://nodejs.org/) too.
+
+This project is build with [Yeoman](http://yeoman.io/).
+
+Install
+-------
+
+Once you have all those and cloned the repo, go to the root of the project and run:
+
+    bower install
+
+That will download all the js and css dependencies of the project.
+
+Then run:
 
     npm install
-    bower install
-    
-## Run
 
-Run: 
+This will download all the node dependencies (including grunt)
+
+Finally you can launch the site running:
 
     grunt serve
-    
-## Build
 
-Run:
+You can build the project ready for production like this:
 
     grunt build
+
+That will leave everything ready on the `/dist` folder
